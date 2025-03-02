@@ -10,13 +10,27 @@ import jakarta.validation.constraints.NotBlank;
 @Table(name="Movies")
 public class Movie {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @NotBlank(message = "Title cannot be blank")
+    private String name;
+    private Genre genre;
+    private Language language;
+
+    @Min(10)
+    @Max(300)
+    private int duration;
+
+    @Min(1)
+    private double price;
+
     public Movie() {
         this.genre=Genre.drama;
         this.language=Language.english;
     }
 
-    public Movie(int id, String name, Genre genre, Language language, int duration, double price) {
-        this.id = id;
+    public Movie(String name, Genre genre, Language language, int duration, double price) {
         this.name = name;
         this.genre = genre;
         this.language = language;
@@ -83,21 +97,6 @@ public class Movie {
         english, french, other
     }
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @NotBlank(message = "Title cannot be blank")
-    private String name;
-    private Genre genre;
-    private Language language;
-
-    @Min(10)
-    @Max(300)
-    private int duration;
-
-    @Min(1)
-    private double price;
 
     @Override
     public String toString() {
