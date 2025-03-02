@@ -48,7 +48,7 @@ GET /movies/search (search movies by name)
         return "addMovie";
     }
 
-    //to submit th movie
+    //to submit the movie
     @PostMapping("/add")
     public String addMovie(@ModelAttribute Movie movie) {
         movieService.addMovie(movie);
