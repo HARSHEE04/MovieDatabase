@@ -82,8 +82,8 @@
 <div class="container">
     <h2>Edit Movie</h2>
 
-    <form action="/movies/edit" method="POST" th:action="@{/movies/edit/{id}(id=${movie.id})}" th:object="${movie}">
-        <input type="hidden" th:field="*{id}" /> <!-- Keep the same ID -->
+    <form th:action="@{/movies/edit/{id}(id=${movie.id})}" method="POST" th:object="${movie}">
+        <input type="hidden" th:field="*{id}" />
 
         <!-- Movie Name -->
         <label for="name">Movie Name:</label>

@@ -52,7 +52,7 @@ GET /movies/search (search movies by name)
     @PostMapping("/add")
     public String addMovie(@ModelAttribute Movie movie) {
         movieService.addMovie(movie);
-        return "redirect:/main"; // Redirect to movie list
+        return "redirect:/Movies"; // Redirect to movie list
     }
 
     //to edit a movie
@@ -67,7 +67,7 @@ GET /movies/search (search movies by name)
     @PostMapping("/edit/{id}")
     public String updateMovie(@ModelAttribute Movie movie) {
         movieService.updateMovie(movie);
-        return "redirect:/main"; // Redirect to movie list
+        return "redirect:/Movies"; // Redirect to movie list
     }
 
 
@@ -75,7 +75,7 @@ GET /movies/search (search movies by name)
     @PostMapping("/delete/{id}")
     public String deleteMovie(@PathVariable int id) {
         movieService.deleteMovie(id);
-        return "redirect:/main"; // Redirect to movie list
+        return "redirect:/Movies"; // Redirect to movie list
     }
 
     //to search movie by name only
@@ -83,7 +83,7 @@ GET /movies/search (search movies by name)
     public String searchMovies(@RequestParam String name, Model model) {
         List<Movie> movies = movieService.searchMoviesByName(name);
         model.addAttribute("movies", movies);
-        return  "redirect:/main"; // Returns updated movie list page
+        return  "redirect:/Movies"; // Returns updated movie list page
     }
 
 }

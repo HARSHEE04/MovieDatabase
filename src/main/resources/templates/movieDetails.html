@@ -1,10 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Movie Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        .movie-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .movie-detail {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #222;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-edit {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background-color: #b52b37;
+        }
+
+        .btn-back {
+            background-color: #6c757d;
+            color: white;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .btn-back:hover {
+            background-color: #5a6268;
+        }
+    </style>
 </head>
 <body>
+
+<div class="container">
+    <h2 class="movie-title" th:text="${movie.name}">Movie Name</h2>
+
+    <p class="movie-detail"><span class="label">Genre:</span> <span th:text="${movie.genre}"></span></p>
+    <p class="movie-detail"><span class="label">Language:</span> <span th:text="${movie.language}"></span></p>
+    <p class="movie-detail"><span class="label">Duration:</span> <span th:text="${movie.duration}"></span> min</p>
+    <p class="movie-detail"><span class="label">Price:</span> $<span th:text="${movie.price}"></span></p>
+
+    <div class="buttons">
+        <a th:href="@{/movies/edit/{id}(id=${movie.id})}" class="btn btn-edit">Edit</a>
+        <form th:action="@{/movies/delete/{id}(id=${movie.id})}" method="post" style="display:inline;">
+            <button type="submit" class="btn btn-delete">Delete</button>
+        </form>
+    </div>
+
+    <a th:href="@{/movies}" class="btn btn-back">Back to List</a>
+</div>
 
 </body>
 </html>

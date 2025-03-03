@@ -107,22 +107,12 @@
 
         <!-- Genre -->
         <label class="medium-text"><strong>Genre Selection:</strong></label>
-        <br>
+        <select id="genre" th:field="*{genre}" required>
+            <option value="comedy">Comedy</option>
+            <option value="drama">Drama</option>
+            <option value="action">Action</option>
+        </select>
 
-        <div class="form-group">
-            <input type="radio" id="comedy" th:field="*{genre}" value="comedy" required>
-            <label for="comedy">Comedy</label>
-        </div>
-
-        <div class="form-group">
-            <input type="radio" id="drama" th:field="*{genre}" value="drama" checked>
-            <label for="drama"> Drama</label>
-        </div>
-
-        <div class="form-group">
-            <input type="radio" id="action" th:field="*{genre}" value="action">
-            <label for="action"> Action</label>
-        </div>
 
         <br>
 
