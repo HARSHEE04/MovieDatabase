@@ -12,11 +12,11 @@ import jakarta.validation.constraints.Pattern;
 public class Movie {
 
     public enum Genre{
-        comedy, drama, action
+        COMEDY, DRAMA, ACTION
     }
 
     public enum Language{
-        english, french, other
+        ENGLISH, FRENCH, OTHER
     }
 
 
@@ -42,8 +42,8 @@ public class Movie {
     private double price;
 
     public Movie() {
-        this.genre=Genre.drama;
-        this.language=Language.english;
+        this.genre=Genre.DRAMA;
+        this.language=Language.ENGLISH;
     }
 
     public Movie(String name, Genre genre, Language language, int duration, double price) {

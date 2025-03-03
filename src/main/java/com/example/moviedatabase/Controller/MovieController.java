@@ -2,6 +2,7 @@ package com.example.moviedatabase.Controller;
 
 import com.example.moviedatabase.Model.Movie;
 import com.example.moviedatabase.Service.MovieService;
+import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -65,6 +66,8 @@ GET /movies/search (search movies by name)
     }
 
 
+
+
     //to edit a movie
     @GetMapping("/edit/{id}")
     public String showEditMovieForm(@PathVariable int id, Model model) {
@@ -116,3 +119,5 @@ GET /movies/search (search movies by name)
 
 
 }
+
+

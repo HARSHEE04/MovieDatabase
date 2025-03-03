@@ -96,26 +96,28 @@
         <!-- Movie Name -->
         <label for="name">Movie Name:</label>
         <input type="text" id="name" th:field="*{name}" required placeholder="Enter movie name">
+        <div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+
 
         <!-- Genre -->
         <label for="genre">Genre Selection:</label>
         <select id="genre" th:field="*{genre}" required>
-            <option value="comedy">Comedy</option>
-            <option value="drama">Drama</option>
-            <option value="action">Action</option>
+            <option value="COMEDY">Comedy</option>
+            <option value="DRAMA">Drama</option>
+            <option value="ACTION">Action</option>
         </select>
 
         <!-- Language -->
         <label>Language:</label>
         <div class="radio-group">
             <label>
-                <input type="radio" th:field="*{language}" value="english" checked> English
+                <input type="radio" th:field="*{language}" value="ENGLISH" checked> English
             </label>
             <label>
-                <input type="radio" th:field="*{language}" value="french"> French
+                <input type="radio" th:field="*{language}" value="FRENCH"> French
             </label>
             <label>
-                <input type="radio" th:field="*{language}" value="other"> Other
+                <input type="radio" th:field="*{language}" value="OTHER"> Other
             </label>
         </div>
 

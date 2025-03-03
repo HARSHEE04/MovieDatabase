@@ -91,9 +91,9 @@
 
         <label class="medium-text"><strong>Genre Selection:</strong></label>
         <select id="genre" th:field="*{genre}" required>
-            <option value="comedy">Comedy</option>
-            <option value="drama">Drama</option>
-            <option value="action">Action</option>
+            <option value="COMEDY">Comedy</option>
+            <option value="DRAMA">Drama</option>
+            <option value="ACTION">Action</option>
         </select>
 
 
@@ -105,15 +105,15 @@
         <div class="radio-group">
             <div class="radio-item">
                 <label for="english">English</label>
-                <input type="radio" id="english" th:field="*{language}" value="english" checked>
+                <input type="radio" id="english" th:field="*{language}" value="ENGLISH" checked>
             </div>
             <div class="radio-item">
                 <label for="french">French</label>
-                <input type="radio" id="french" th:field="*{language}" value="french">
+                <input type="radio" id="french" th:field="*{language}" value="FRENCH">
             </div>
             <div class="radio-item">
                 <label for="other">Other</label>
-                <input type="radio" id="other" th:field="*{language}" value="other">
+                <input type="radio" id="other" th:field="*{language}" value="OTHER">
             </div>
         </div>
 

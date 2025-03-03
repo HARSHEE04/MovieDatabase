@@ -16,9 +16,9 @@ public class DataInitializer implements CommandLineRunner {
     public void run(String... args) throws Exception {
         movieRepository.deleteAll(); // Clears all existing movies
 
-        Movie movie1 = new Movie("Inception", Movie.Genre.drama, Movie.Language.english, 148, 12.99);
-        Movie movie2 = new Movie("Amélie", Movie.Genre.comedy, Movie.Language.french, 122, 10.99);
-        Movie movie3 = new Movie("Parasite", Movie.Genre.drama, Movie.Language.other, 132, 11.99);
+        Movie movie1 = new Movie("Inception", Movie.Genre.DRAMA, Movie.Language.ENGLISH, 148, 12.99);
+        Movie movie2 = new Movie("Amélie", Movie.Genre.COMEDY, Movie.Language.FRENCH, 122, 10.99);
+        Movie movie3 = new Movie("Parasite", Movie.Genre.DRAMA, Movie.Language.OTHER, 132, 11.99);
 
         movieRepository.save(movie1);
         movieRepository.save(movie2);
