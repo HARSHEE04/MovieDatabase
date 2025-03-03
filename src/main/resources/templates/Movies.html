@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Movies Collection</title>
+    <title>🎬 Movies Collection 🎬</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -10,11 +10,69 @@
             margin: 0;
             padding: 20px;
             text-align: center;
+            background-size: cover;
+            background-position: center;
         }
+
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Ensures it's behind all other content */
+        }
+        .movies-heading {
+            color: #f4f4f4; /* Choose any color (this is orange-red) */
+            font-size: 28px; /* Optional: Adjust font size */
+            font-weight: bold; /* Optional: Make it stand out */
+        }
+
 
         h2 {
             color: #333;
             margin-bottom: 20px;
+        }
+
+        .btn-add {
+            background-color: #17a2b8;
+            color: white;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .btn-add:hover {
+            background-color: #138496;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        .search-container input {
+            padding: 8px;
+            width: 250px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-right: 5px;
+        }
+
+        .search-container button {
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-container button:hover {
+            background-color: #0056b3;
         }
 
         .movie-container {
@@ -88,37 +146,29 @@
         .btn-delete:hover {
             background-color: #b52b37;
         }
-
-        .btn-add {
-            background-color: #17a2b8;
-            color: white;
-            padding: 10px 15px;
-            font-size: 16px;
-            border-radius: 5px;
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        .btn-add:hover {
-            background-color: #138496;
-        }
     </style>
 </head>
 <body>
 
-<h2>Movies Collection</h2>
+<video autoplay loop muted playsinline class="bg-video">
+    <source src="/MovieCollectionVideo.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+
+<h2 class="movies-heading">🍿 Movies Collection 🍿</h2>
+
 
 <a href="/add" class="btn-add">➕ Add New Movie</a>
 
-<form th:action="@{/search}" method="get" class="mb-5 w-50 mx-auto">
-    <label>
-        <input type="text" name="name" class="form-control" placeholder="Search for a movie...">
-    </label>
-    <button type="submit" class="btn btn-primary mt-2">🔍 Search</button>
-</form>
-
-
+<div class="search-container">
+    <form th:action="@{/search}" method="get">
+        <label>
+            <input type="text" name="name" placeholder="Search for a movie...">
+        </label>
+        <button type="submit">🔍 Search</button>
+    </form>
+</div>
 
 <div class="movie-container">
     <div class="movie-card" th:each="movie : ${movies}">

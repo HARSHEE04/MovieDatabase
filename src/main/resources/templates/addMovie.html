@@ -2,41 +2,54 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add Movie</title>
+    <title>Add Movie 🎞️</title>
     <style>
+        /* General styling */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f4f4f4;
+            overflow: hidden;
         }
 
+        /* Video Background */
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Container Styling */
         .container {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
-            width: 350px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
         }
 
         h2 {
-            text-align: center;
             color: #333;
         }
 
         label {
             font-weight: bold;
-            margin-top: 10px;
             display: block;
+            margin-top: 10px;
         }
 
         input, select {
             width: 100%;
-            padding: 6px;
+            padding: 8px;
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -44,24 +57,23 @@
 
         .radio-group {
             display: flex;
-            gap: 10px;
+            justify-content: center;
+            gap: 15px;
             margin-top: 5px;
         }
 
         .btn-container {
             display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
+            justify-content: space-around;
+            margin-top: 20px;
         }
 
         .btn {
-            padding: 6px 10px;
+            padding: 12px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
-            width: 48%;
-            text-align: center;
-            font-size: 14px;
+            font-size: 16px;
         }
 
         .btn-primary {
@@ -78,8 +90,6 @@
             color: white;
             text-decoration: none;
             display: inline-block;
-            text-align: center;
-            line-height: 2.4;
         }
 
         .btn-secondary:hover {
@@ -88,27 +98,29 @@
     </style>
 </head>
 <body>
-
+<video autoplay loop muted playsinline class="bg-video">
+    <source src="/addmovieVideo.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
 <div class="container">
-    <h2>Add a New Movie</h2>
+    <h2>Add a New Movie 🍿</h2>
 
     <form th:action="@{/add}" method="POST" th:object="${movie}">
         <!-- Movie Name -->
-        <label for="name">Movie Name:</label>
+        <label for="name">Movie Name :</label>
         <input type="text" id="name" th:field="*{name}" required placeholder="Enter movie name">
         <div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
 
-
         <!-- Genre -->
-        <label for="genre">Genre Selection:</label>
+        <label for="genre">Genre Selection 🎬:</label>
         <select id="genre" th:field="*{genre}" required>
-            <option value="COMEDY">Comedy</option>
-            <option value="DRAMA">Drama</option>
-            <option value="ACTION">Action</option>
+            <option value="COMEDY">Comedy 🤣</option>
+            <option value="DRAMA">Drama 🎭</option>
+            <option value="ACTION">Action 🔥</option>
         </select>
 
         <!-- Language -->
-        <label>Language:</label>
+        <label>Language 🌍:</label>
         <div class="radio-group">
             <label>
                 <input type="radio" th:field="*{language}" value="ENGLISH" checked> English
@@ -122,20 +134,19 @@
         </div>
 
         <!-- Duration -->
-        <label for="duration">Duration (min):</label>
+        <label for="duration">Duration (min) ⏱️:</label>
         <input type="number" id="duration" th:field="*{duration}" min="10" max="300" required>
 
         <!-- Price -->
-        <label for="price">Price ($):</label>
+        <label for="price">Price ($) 💰:</label>
         <input type="number" id="price" th:field="*{price}" step="0.01" min="0" required>
 
         <!-- Buttons -->
         <div class="btn-container">
-            <button type="submit" class="btn btn-primary">Add Movie</button>
-            <a href="/main" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">🎟️ Add Movie</button>
+            <a href="/main" class="btn btn-secondary">❌ Cancel</a>
         </div>
     </form>
 </div>
-
 </body>
 </html>

@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <title>Movie Details</title>
     <style>
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -15,47 +25,51 @@
             height: 100vh;
         }
 
+        /* Larger and more centered container */
         .container {
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            width: 400px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+            width: 500px; /* Increased size */
             text-align: center;
         }
 
         .movie-title {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
+            color: #222;
+            margin-bottom: 15px;
         }
 
         .movie-detail {
             font-size: 18px;
-            margin: 10px 0;
-            color: #555;
+            margin: 12px 0;
+            color: #444;
         }
 
         .label {
             font-weight: bold;
-            color: #222;
+            color: #111;
         }
 
         .buttons {
-            margin-top: 20px;
+            margin-top: 25px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            gap: 15px; /* Ensures spacing between Edit & Delete */
+            flex-wrap: wrap;
         }
 
         .btn {
-            padding: 10px 15px;
+            padding: 12px 18px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 16px;
             text-decoration: none;
             text-align: center;
+            transition: 0.3s ease-in-out;
         }
 
         .btn-edit {
@@ -79,16 +93,31 @@
         .btn-back {
             background-color: #6c757d;
             color: white;
-            width: 100%;
-            margin-top: 15px;
+            width: auto; /* Adjusts to content size instead of full width */
+            margin-top: 15px; /* Slightly reduced margin */
+            padding: 8px 14px; /* Smaller padding */
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px; /* Smaller font */
+            text-align: center;
+            display: inline-block; /* Prevents full-line stretching */
+            transition: 0.3s ease-in-out;
         }
+
 
         .btn-back:hover {
             background-color: #5a6268;
         }
+
     </style>
 </head>
 <body>
+
+<video autoplay loop muted playsinline class="bg-video">
+    <source src="/viewVideoBackground.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
 
 <div class="container">
     <h2 class="movie-title" th:text="${movie.name}">Movie Name</h2>
