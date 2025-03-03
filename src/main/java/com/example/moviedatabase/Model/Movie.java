@@ -5,17 +5,33 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name="Movies")
 public class Movie {
 
+    public enum Genre{
+        comedy, drama, action
+    }
+
+    public enum Language{
+        english, french, other
+    }
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+
     @NotBlank(message = "Title cannot be blank")
     private String name;
+
+
     private Genre genre;
+
+
     private Language language;
 
     @Min(10)
@@ -67,11 +83,13 @@ public class Movie {
     }
 
     public void setName(String name) {
-        if (!name.matches("^[A-Za-z0-9 ]+$")) {  // Allows only letters, numbers, and spaces
+        if (name != null && name.matches("^[A-Za-z0-9 ]+$")) {
+            this.name = name;
+        } else {
             throw new IllegalArgumentException("Title contains invalid characters.");
         }
-        this.name = name;
     }
+
 
     public void setGenre(Genre genre) {
         this.genre = genre;
@@ -89,13 +107,6 @@ public class Movie {
         this.price = price;
     }
 
-    public enum Genre{
-        comedy, drama, action
-    }
-
-    public enum Language{
-        english, french, other
-    }
 
 
     @Override

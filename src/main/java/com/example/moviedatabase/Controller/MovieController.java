@@ -2,10 +2,13 @@ package com.example.moviedatabase.Controller;
 
 import com.example.moviedatabase.Model.Movie;
 import com.example.moviedatabase.Service.MovieService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -50,10 +53,17 @@ GET /movies/search (search movies by name)
 
     //to submit the movie
     @PostMapping("/add")
-    public String addMovie(@ModelAttribute Movie movie) {
+    public String addMovie(@Valid @ModelAttribute Movie movie, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            System.out.println("Validation Errors: " + result.getAllErrors());
+            model.addAttribute("movie", movie);
+            return "addMovie"; // Reload form with errors
+        }
+
         movieService.addMovie(movie);
-        return "redirect:/Movies"; // Redirect to movie list
+        return "redirect:/main"; // Success
     }
+
 
     //to edit a movie
     @GetMapping("/edit/{id}")
@@ -65,25 +75,44 @@ GET /movies/search (search movies by name)
 
     //to submit the edited movie
     @PostMapping("/edit/{id}")
-    public String updateMovie(@ModelAttribute Movie movie) {
-        movieService.updateMovie(movie);
-        return "redirect:/Movies"; // Redirect to movie list
+    public String updateMovie(@PathVariable int id, @ModelAttribute Movie movie) {
+        // Fetch existing movie from database
+        Movie existingMovie = movieService.getMovieById(id);
+
+        // Update fields with new values
+        existingMovie.setName(movie.getName());
+        existingMovie.setGenre(movie.getGenre());
+        existingMovie.setLanguage(movie.getLanguage());
+        existingMovie.setDuration(movie.getDuration());
+        existingMovie.setPrice(movie.getPrice());
+
+        // Save updated movie
+        movieService.updateMovie(existingMovie);
+        return "redirect:/main"; // Redirect to movie list
     }
+
 
 
     //to delete a movie
     @PostMapping("/delete/{id}")
     public String deleteMovie(@PathVariable int id) {
         movieService.deleteMovie(id);
-        return "redirect:/Movies"; // Redirect to movie list
+        return "redirect:/main"; // Redirect to movie list
     }
 
     //to search movie by name only
     @GetMapping("/search")
     public String searchMovies(@RequestParam String name, Model model) {
         List<Movie> movies = movieService.searchMoviesByName(name);
-        model.addAttribute("movies", movies);
-        return  "redirect:/Movies"; // Returns updated movie list page
+
+        if (movies.isEmpty()) {
+            model.addAttribute("error", "No movies found");
+            return "redirect:/main"; // Redirects back if no movie is found
+        }
+
+        model.addAttribute("movie", movies.get(0)); // Assuming you want to display only the first match
+        return "movieDetails"; // Displays the details page
     }
+
 
 }

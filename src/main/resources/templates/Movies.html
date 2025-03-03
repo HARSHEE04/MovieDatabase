@@ -109,7 +109,16 @@
 
 <h2>Movies Collection</h2>
 
-<a href="/movies/add" class="btn-add">➕ Add New Movie</a>
+<a href="/add" class="btn-add">➕ Add New Movie</a>
+
+<form th:action="@{/search}" method="get" class="mb-3 w-50 mx-auto">
+    <label>
+        <input type="text" name="name" class="form-control" placeholder="Search for a movie...">
+    </label>
+    <button type="submit" class="btn btn-primary mt-2">🔍 Search</button>
+</form>
+
+
 
 <div class="movie-container">
     <div class="movie-card" th:each="movie : ${movies}">
@@ -121,8 +130,8 @@
 
         <div class="buttons">
             <a th:href="@{/movies/{id}(id=${movie.id})}" class="btn btn-view">🔍 View</a>
-            <a th:href="@{/movies/edit/{id}(id=${movie.id})}" class="btn btn-edit">✏️ Edit</a>
-            <form th:action="@{/movies/delete/{id}(id=${movie.id})}" method="post" style="display:inline;">
+            <a th:href="@{/edit/{id}(id=${movie.id})}" class="btn btn-edit">✏️ Edit</a>
+            <form th:action="@{/delete/{id}(id=${movie.id})}" method="post" style="display:inline;">
                 <button type="submit" class="btn btn-delete">🗑️ Delete</button>
             </form>
         </div>

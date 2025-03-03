@@ -42,13 +42,9 @@
             border-radius: 5px;
         }
 
-        .radio-group label, .checkbox-group label {
-            font-weight: normal;
-            display: inline-block;
-            margin-left: 5px;
-            font-size: 14px;
-        }
-        .radio-group, .checkbox-group {
+        .radio-group {
+            display: flex;
+            gap: 10px;
             margin-top: 5px;
         }
 
@@ -68,12 +64,6 @@
             font-size: 14px;
         }
 
-        .form-group {
-            display: flex;
-            align-items: center;
-            gap: 5px; /* Small spacing between the input and text */
-        }
-
         .btn-primary {
             background-color: #007bff;
             color: white;
@@ -88,6 +78,8 @@
             color: white;
             text-decoration: none;
             display: inline-block;
+            text-align: center;
+            line-height: 2.4;
         }
 
         .btn-secondary:hover {
@@ -100,38 +92,31 @@
 <div class="container">
     <h2>Add a New Movie</h2>
 
-    <form action="/add" method="POST" th:object="${movie}">
+    <form th:action="@{/add}" method="POST" th:object="${movie}">
         <!-- Movie Name -->
         <label for="name">Movie Name:</label>
         <input type="text" id="name" th:field="*{name}" required placeholder="Enter movie name">
 
         <!-- Genre -->
-        <label class="medium-text"><strong>Genre Selection:</strong></label>
+        <label for="genre">Genre Selection:</label>
         <select id="genre" th:field="*{genre}" required>
             <option value="comedy">Comedy</option>
             <option value="drama">Drama</option>
             <option value="action">Action</option>
         </select>
 
-
-        <br>
-
-
         <!-- Language -->
-        <label><strong>Language:</strong></label>
+        <label>Language:</label>
         <div class="radio-group">
-            <div class="radio-item">
-                <label for="english">English</label>
-                <input type="radio" id="english" th:field="*{language}" value="english" checked>
-            </div>
-            <div class="radio-item">
-                <label for="french">French</label>
-                <input type="radio" id="french" th:field="*{language}" value="french">
-            </div>
-            <div class="radio-item">
-                <label for="other">Other</label>
-                <input type="radio" id="other" th:field="*{language}" value="other">
-            </div>
+            <label>
+                <input type="radio" th:field="*{language}" value="english" checked> English
+            </label>
+            <label>
+                <input type="radio" th:field="*{language}" value="french"> French
+            </label>
+            <label>
+                <input type="radio" th:field="*{language}" value="other"> Other
+            </label>
         </div>
 
         <!-- Duration -->
@@ -145,12 +130,10 @@
         <!-- Buttons -->
         <div class="btn-container">
             <button type="submit" class="btn btn-primary">Add Movie</button>
-            <a href="/movies" class="btn btn-secondary">Cancel</a>
+            <a href="/main" class="btn btn-secondary">Cancel</a>
         </div>
     </form>
 </div>
 
 </body>
 </html>
-
-

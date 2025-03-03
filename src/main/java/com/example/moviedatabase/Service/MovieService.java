@@ -20,9 +20,9 @@ public class MovieService {
 
 
     //addMovie
-    public boolean addMovie(Movie movie){
+    public void addMovie(Movie movie){
+        System.out.println("Saving Movie: " + movie); // Debugging
         movieRepository.save(movie);
-        return true;
     }
 
     //getAllMovies

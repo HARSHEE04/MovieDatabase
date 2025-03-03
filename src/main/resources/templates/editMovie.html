@@ -82,54 +82,53 @@
 <div class="container">
     <h2>Edit Movie</h2>
 
-    <form th:action="@{/movies/edit/{id}(id=${movie.id})}" method="POST" th:object="${movie}">
+    <form th:action="@{/edit/{id}(id=${movie.id})}" method="POST" th:object="${movie}">
+        <!-- Ensure the hidden input field contains the movie ID -->
         <input type="hidden" th:field="*{id}" />
 
-        <!-- Movie Name -->
         <label for="name">Movie Name:</label>
-        <input type="text" id="name" th:field="*{name}" required>
+        <input type="text" id="name" th:field="*{name}" required />
 
-        <!-- Genre -->
-        <label><strong>Genre:</strong></label>
-        <div class="form-group">
-            <input type="radio" id="comedy" th:field="*{genre}" value="Comedy">
-            <label for="comedy">Comedy</label>
+        <label class="medium-text"><strong>Genre Selection:</strong></label>
+        <select id="genre" th:field="*{genre}" required>
+            <option value="comedy">Comedy</option>
+            <option value="drama">Drama</option>
+            <option value="action">Action</option>
+        </select>
 
-            <input type="radio" id="drama" th:field="*{genre}" value="Drama">
-            <label for="drama">Drama</label>
 
-            <input type="radio" id="action" th:field="*{genre}" value="Action">
-            <label for="action">Action</label>
-        </div>
+        <br>
+
 
         <!-- Language -->
         <label><strong>Language:</strong></label>
-        <div class="form-group">
-            <input type="radio" id="english" th:field="*{language}" value="English">
-            <label for="english">English</label>
-
-            <input type="radio" id="french" th:field="*{language}" value="French">
-            <label for="french">French</label>
-
-            <input type="radio" id="other" th:field="*{language}" value="Other">
-            <label for="other">Other</label>
+        <div class="radio-group">
+            <div class="radio-item">
+                <label for="english">English</label>
+                <input type="radio" id="english" th:field="*{language}" value="english" checked>
+            </div>
+            <div class="radio-item">
+                <label for="french">French</label>
+                <input type="radio" id="french" th:field="*{language}" value="french">
+            </div>
+            <div class="radio-item">
+                <label for="other">Other</label>
+                <input type="radio" id="other" th:field="*{language}" value="other">
+            </div>
         </div>
 
-        <!-- Duration -->
         <label for="duration">Duration (min):</label>
-        <input type="number" id="duration" th:field="*{duration}" min="10" max="300" required>
+        <input type="number" id="duration" th:field="*{duration}" min="10" max="300" required />
 
-        <!-- Price -->
         <label for="price">Price ($):</label>
-        <input type="number" id="price" th:field="*{price}" step="0.01" min="0" required>
+        <input type="number" id="price" th:field="*{price}" step="0.01" min="0" required />
 
-        <!-- Buttons -->
         <div class="btn-container">
             <button type="submit">Update Movie</button>
-            <a href="/movies" class="btn-secondary btn">Cancel</a>
+            <a href="/main" class="btn-secondary btn">Cancel</a>
         </div>
-
     </form>
+
 </div>
 
 </body>
